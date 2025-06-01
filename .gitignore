@@ -1,0 +1,20 @@
+# Cloudflare credentials
+.cloudflared/
+*.pem
+*.json
+
+# Kubernetes secrets
+*-secret.yaml
+*-credentials.yaml
+
+# Environment files
+.env
+*.env
+
+# Local configuration
+config.local.yaml
+credentials.local.json
+
+# OS files
+.DS_Store
+Thumbs.db 

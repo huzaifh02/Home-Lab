@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jellyfin
+  namespace: jellyfin
+  labels:
+    app: jellyfin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jellyfin
+  template:
+    metadata:
+      labels:
+        app: jellyfin
+    spec:
+      containers:
+      - name: jellyfin
+        image: jellyfin/jellyfin:latest
+        ports:
+        - containerPort: 8096
+        - containerPort: 8920
+        - containerPort: 7359
+          protocol: UDP
+        - containerPort: 1900
+          protocol: UDP
+        volumeMounts:
+        - name: jellyfin-media
+          mountPath: /media
+        - name: jellyfin-config
+          mountPath: /config
+        env:
+        - name: JELLYFIN_PublishedServerUrl
+          value: "http://jellyfin:8096"
+      volumes:
+      - name: jellyfin-media
+        persistentVolumeClaim:
+          claimName: jellyfin-media
+      - name: jellyfin-config
+        emptyDir: {} 
