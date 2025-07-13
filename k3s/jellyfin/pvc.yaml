@@ -8,5 +8,20 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 100Gi
-  storageClassName: local-path 
+      storage: 50Gi
+  storageClassName: manual
+  volumeName: jellyfin-media-pv
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jellyfin-config
+  namespace: jellyfin
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: manual
+  volumeName: jellyfin-config-pv 

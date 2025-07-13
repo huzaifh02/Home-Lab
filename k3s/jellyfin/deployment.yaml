@@ -32,10 +32,11 @@ spec:
           mountPath: /config
         env:
         - name: JELLYFIN_PublishedServerUrl
-          value: "http://jellyfin:8096"
+          value: "https://jellyfin:8096"
       volumes:
       - name: jellyfin-media
         persistentVolumeClaim:
           claimName: jellyfin-media
       - name: jellyfin-config
-        emptyDir: {} 
+        persistentVolumeClaim:
+          claimName: jellyfin-config 
