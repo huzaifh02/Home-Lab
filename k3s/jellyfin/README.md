@@ -3,7 +3,7 @@
 Media server deployment for k3s cluster.
 
 ```mermaid
-flowchart TD
+graph TD
     A["Client Browser"] -->|"https://jellyfin.local"| B["Ingress Controller"]
     B -->|"Port 8096"| C["Jellyfin Service"]
     C --> D["Jellyfin Pod"]
